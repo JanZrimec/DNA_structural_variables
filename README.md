@@ -15,5 +15,5 @@ Here we gathered besides the 6 structural properties that were shown to be able 
 ```out = get_structures_par(seq,tidd)```
 
 where:
-* in ... is a cell array of DNA sequences {A,C,G,T} of equal length.
-* tidd ... boolean parameter whether to calculate TIDD (Zrimec & Lapanje 2015).
+* in .. cell array of DNA sequences {A,C,G,T} of equal length.
+* tidd .. boolean parameter whether to calculate TIDD (Zrimec & Lapanje 2015).
