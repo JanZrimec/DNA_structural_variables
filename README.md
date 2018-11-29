@@ -12,8 +12,8 @@ Conformational and physicochemical structural properties of the DNA double helix
 Here we gathered besides the 6 structural properties that were shown to be able to distinguish between different DNA substrates additional DNA structure models shown to be informative for analysis of DNA-protein interactions. These models were based on nearest neighbor dinucleotide (54) and trinucleotide (4) models and included physicochemical and conformational properties and properties attributed to DNA-protein interactions (see List_structural_variables.csv).
 
 ## Usage
-```out = get_structures_par(seq,tidd)```
+```out = get_structures_par(seqs,window)```
 
 where:
-* in .. cell array of DNA sequences {A,C,G,T} of equal length.
-* tidd .. boolean parameter whether to calculate TIDD (Zrimec & Lapanje 2015).
+* seqs .. fasta file
+* window .. size of sliding window
