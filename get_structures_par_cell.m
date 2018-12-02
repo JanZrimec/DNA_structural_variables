@@ -1,4 +1,4 @@
-function [out] = get_structures_par_single(fname,window)
+function [out] = get_structures_par(fname,window)
 % function that calculates structural variables from input sequences 
 % fname ... input fasta file
 % window ... size of sliding window for predictions (3 to 20 bps)
@@ -55,35 +55,10 @@ if Perl
     out_Perl = get_Perl_variables(fname);
 end
 
-% process results, if k-mers return array of all singles
-if window == x
-    num_variables = 57+Weka+4*R+Perl+melt;
-    if Weka == false && Perl == false
-        out = zeros(tmps,num_variables);
-        for i=1:tmps
-            out(i,:) = cell2mat(out_Mat{i}(1:57));
-        end
-    elseif Weka == true && Perl == false
-        out = zeros(tmps,num_variables);
-        for i=1:tmps
-            out(i,:) = [cell2mat(out_Mat{i}(1:57)),mean(out_R{i,1}),...
-            mean(out_R{i,2}),mean(out_R{i,3}),mean(out_R{i,4}),...
-            mean(out_Mat{i}{58}(1:window-W+1))];
-        end
-    else
-        out = zeros(tmps,num_variables);
-        for i=1:tmps
-            out(i,:) = [cell2mat(out_Mat{i}(1:57)),mean(out_R{i,1}),...
-            mean(out_R{i,2}),mean(out_R{i,3}),mean(out_R{i,4}),...
-            mean(out_Perl(i,:)),mean(out_Mat{i}{58}(1:window-W+1)),...
-            out_Mat{i}{59}];
-        end
-    end
-else
-    out = cell(tmps,64);
-    for i=1:tmps
-        out(i,:) = [out_Mat{i}(1:57),out_R(i,:),out_Perl(i,:),out_Mat{i}(58:59)];
-    end
+% process results
+out = cell(tmps,64);
+for i=1:tmps
+    out(i,:) = [out_Mat{i}(1:57),out_R(i,:),out_Perl(i,:),out_Mat{i}(58:59)];
 end
 
 end
