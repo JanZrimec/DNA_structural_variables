@@ -1,4 +1,4 @@
-function [out] = get_structures_par(fname,window)
+function [out] = get_structures_par_cell(fname,window)
 % function that calculates structural variables from input sequences 
 % fname ... input fasta file
 % window ... size of sliding window for predictions (3 to 20 bps)
