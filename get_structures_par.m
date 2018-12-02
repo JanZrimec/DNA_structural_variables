@@ -10,6 +10,7 @@ seqs(1,:) = [];
 seqs = seqs';
 tmps = length(seqs);
 x = length(seqs{1});
+initialize_ParforProgress();
 pp = ParforProgress; %https://se.mathworks.com/matlabcentral/fileexchange/48705-parforprogress-class
 
 % assert statements and define additional parameters
