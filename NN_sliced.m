@@ -6,7 +6,7 @@ function NNx2 = NN_sliced(in,win,weka,nbr,W,melt,ii,x,NNsp,NNNsp)
 i = 1;
 NNx{i,1} = in;
 NNx{i,2} = nt2int(in);
-NNx2 = NNx;
+NNx2 = cell(i,61);
 
 for j=1:53 % size NN structural properties
 

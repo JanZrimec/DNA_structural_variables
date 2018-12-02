@@ -1,19 +1,23 @@
-# DNA structural variables
+Class to monitor progress of parfor loop
 
-Tools for prediction of DNA structural properties used in the following publications:
-* [Zrimec & Lapanje 2018: DNA structure at the plasmid origin-of-transfer indicates its potential transfer range](https://www.nature.com/articles/s41598-018-20157-y)
-* [Tosato et al. 2017: Bridge-Induced Translocation between NUP145 and TOP2 Yeast Genes Models the Genetic Fusion between the Human Orthologs Associated With Acute Myeloid Leukemia](https://www.frontiersin.org/articles/10.3389/fonc.2017.00231/full)
+The parallel workers write to a common file for each iteration and determine the total number of completed iterations by counting the number of lines in the file.
 
-## Description
-Conformational and physicochemical structural properties of the DNA double helix are important for cell homeostasis as well as bacterial pathogenesis, since they are responsible for regulation of key genetic processes by assisting protein-DNA recognition and binding. The processes include DNA transcription, replication and horizontal transfer of mobile genetic elements that carry virulence and antimicrobial resistance genes. Common to the initiation of these processes is the occurrence of DNA melting bubbles, which form as a consequence of intrinsically low dsDNA stability and extrinsic duplex destabilization in neighboring DNA induced by proteins, topological DNA features and thermal fluctuations (thermally induced duplex destabilization, TIDD, Zrimec & Lapanje 2015). According to our previous results oriT conformational and physicochemical properties were more informative than nucleotide sequences for descriminating group of DNA substrates (see figure below from Zrimec & Lapanje 2018).
+USAGE:
 
-<img src="https://github.com/JanZrimec/DNA_structural_variables/blob/master/Figure_3.jpg" width="480">
+```matlab
+pp = ParforProgress;
+parfor kk = 1:100
+  DO_SOMETHING;
+  iteration_number = step(pp, kk);
+  fprintf('Finished iteration %d of %d\n', iteration_number, kk);
+end
+```
 
-Here we gathered besides the 6 structural properties that were shown to be able to distinguish between different DNA substrates additional DNA structure models shown to be informative for analysis of DNA-protein interactions. These models were based on nearest neighbor dinucleotide (54) and trinucleotide (4) models and included physicochemical and conformational properties and properties attributed to DNA-protein interactions (see List_structural_variables.csv).
+The numbers may not go exactly in order depending on the order in which the parallel workers finish, but they'll be close enough so you'll get the idea of where you are.
 
-## Usage
-```out = get_structures_par(seqs,window)```
+See this code on the Matlab file exchange: http://www.mathworks.com/matlabcentral/fileexchange/48705-parforprogress-class
 
-where:
-* seqs .. fasta file
-* window .. size of sliding window
+The technique of using a single file to store the iteration information was inspired by this file exchange utility:
+
+http://www.mathworks.com/matlabcentral/fileexchange/32101-progress-monitor--progress-bar--that-works-with-parfor
+
