@@ -26,11 +26,11 @@ for j=1:53 % size NN structural properties
         end
     elseif strcmp(NNsp{2+j,5},'I')
         for kk=1:x-win+1
-            NNx2{i,2+j}(1,kk) = 10/sum(1./NNx{i,2+j}(kk:win-2)); %width/sum(1./a(i:i+(width-1)));
+            NNx2{i,2+j}(1,kk) = win/sum(1./NNx{i,2+j}(kk:kk+win-2)); %width/sum(1./a(i:i+(width-1)));
         end
     else                                                % elseif strcmp(NNsp{2+j,5},'N')
         for kk=1:x-win+1
-            NNx2{i,2+j}(1,kk) = mean(NNx{i,2+j}(kk:win-2));  % NNx{i,2+j}(x) = [];  % matrix index is out of range for deletion
+            NNx2{i,2+j}(1,kk) = mean(NNx{i,2+j}(kk:kk+win-2));  % NNx{i,2+j}(x) = [];  % matrix index is out of range for deletion
         end
     end
 
